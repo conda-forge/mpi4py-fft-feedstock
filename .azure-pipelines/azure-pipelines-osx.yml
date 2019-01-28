@@ -1,3 +1,7 @@
+# This file was generated automatically from conda-smithy. To update this configuration,
+# update the conda-forge.yml and/or the recipe/meta.yaml.
+# -*- mode: yaml -*-
+
 jobs:
 - job: osx_64
   pool:
@@ -6,30 +10,24 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
-      osx_c_compilerclangcxx_compilerclangxxmpimpichpython2.7:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpimpichpython2.7
-      osx_c_compilerclangcxx_compilerclangxxmpimpichpython3.6:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpimpichpython3.6
-      osx_c_compilerclangcxx_compilerclangxxmpimpichpython3.7:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpimpichpython3.7
-      osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython2.7:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython2.7
-      osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython3.6:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython3.6
-      osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython3.7:
-        CONFIG: osx_c_compilerclangcxx_compilerclangxxmpiopenmpipython3.7
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython2.7:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython2.7
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython3.6:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython3.6
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython3.7:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpimpichpython3.7
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython2.7:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython2.7
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython3.6:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython3.6
-      osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython3.7:
-        CONFIG: osx_c_compilertoolchain_ccxx_compilertoolchain_cxxmpiopenmpipython3.7
+      osx_mpimpichpython2.7:
+        CONFIG: osx_mpimpichpython2.7
+        UPLOAD_PACKAGES: False
+      osx_mpimpichpython3.6:
+        CONFIG: osx_mpimpichpython3.6
+        UPLOAD_PACKAGES: False
+      osx_mpimpichpython3.7:
+        CONFIG: osx_mpimpichpython3.7
+        UPLOAD_PACKAGES: False
+      osx_mpiopenmpipython2.7:
+        CONFIG: osx_mpiopenmpipython2.7
+        UPLOAD_PACKAGES: False
+      osx_mpiopenmpipython3.6:
+        CONFIG: osx_mpiopenmpipython3.6
+        UPLOAD_PACKAGES: False
+      osx_mpiopenmpipython3.7:
+        CONFIG: osx_mpiopenmpipython3.7
+        UPLOAD_PACKAGES: False
 
   steps:
   # TODO: Fast finish on azure pipelines?
@@ -58,7 +56,7 @@ jobs:
   - script: |
       export PATH=$(Build.StagingDirectory)/miniconda/bin:$PATH
       set -x -e
-      conda install -n base -c conda-forge --quiet --yes conda-forge-ci-setup=2
+      conda install -n base -c conda-forge --quiet --yes conda-forge-ci-setup=2 conda-build
     displayName: 'Add conda-forge-ci-setup=2'
 
   - script: |
@@ -93,4 +91,9 @@ jobs:
       conda build ./recipe -m ./.ci_support/${CONFIG}.yaml --clobber-file ./.ci_support/clobber_${CONFIG}.yaml
     displayName: Build recipe
 
-  
+  - script: |
+      export PATH=$(Build.StagingDirectory)/miniconda/bin:$PATH
+      set -x -e
+      upload_package ./ ./recipe ./.ci_support/${CONFIG}.yaml
+    displayName: Upload recipe
+    condition: not(eq(variables['UPLOAD_PACKAGES'], 'False'))
