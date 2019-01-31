@@ -28,7 +28,6 @@ requirements:
     - setuptools
   run:
     - python
-    - {{ mpi }}
     - mpi4py
     - {{ pin_compatible('numpy') }}
     - fftw
