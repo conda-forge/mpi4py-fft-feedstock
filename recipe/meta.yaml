@@ -1,4 +1,4 @@
-{% set build = 1002 %}
+{% set build = 1003 %}
 {% set name = "mpi4py-fft" %}
 {% set version = "1.1.2" %}
 
@@ -28,7 +28,6 @@ requirements:
     - setuptools
   run:
     - python
-    - {{ mpi }}
     - mpi4py
     - {{ pin_compatible('numpy') }}
     - fftw
