@@ -1,6 +1,6 @@
-{% set build = 1003 %}
+{% set build = 0 %}
 {% set name = "mpi4py-fft" %}
-{% set version = "1.1.2" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://bitbucket.org/mpi4py/mpi4py-fft/get/{{ version }}.tar.bz2
-  sha256: 888dbe1649bf3accf6e93e9f075fdfea6d7ba216a28dd1ba5b68cc5e386818b9
+  sha256: 4979946a1da029530cace01e831c643f2af8e5dd71c79a9666a8f9902ee7915c
 
 build:
   number: {{ build }}
