@@ -3,7 +3,7 @@ About mpi4py-fft
 
 Home: https://bitbucket.org/mpi4py/mpi4py-fft
 
-Package license: BSD 2-clause
+Package license: BSD-2-Clause
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mpi4py-fft-feedstock/blob/master/LICENSE.txt)
 
