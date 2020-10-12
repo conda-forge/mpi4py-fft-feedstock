@@ -38,7 +38,7 @@ test:
 
 about:
   home: https://bitbucket.org/mpi4py/mpi4py-fft
-  license: BSD 2-clause
+  license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE.rst
   summary: 'Fast Fourier Transforms (FFTs) in parallel with MPI for Python'
