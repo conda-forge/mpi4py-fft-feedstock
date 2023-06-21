@@ -1,7 +1,7 @@
 About mpi4py-fft
 ================
 
-Home: https://bitbucket.org/mpi4py/mpi4py-fft
+Home: https://github.com/mpi4py/mpi4py-fft
 
 Package license: BSD-2-Clause
 
@@ -9,7 +9,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mpi4py-fft-feed
 
 Summary: Fast Fourier Transforms (FFTs) in parallel with MPI for Python
 
-Development: https://bitbucket.org/mpi4py/mpi4py-fft
+Development: https://github.com/mpi4py/mpi4py-fft
 
 Documentation: https://mpi4py-fft.readthedocs.io
 
@@ -23,7 +23,7 @@ Current build status
 
 
 <table>
-    
+
   <tr>
     <td>Azure</td>
     <td>
