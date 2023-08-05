@@ -1,4 +1,4 @@
-{% set build = 0 %}
+{% set build = 1 %}
 {% set name = "mpi4py-fft" %}
 {% set version = "2.0.5" %}
 
@@ -16,24 +16,26 @@ build:
 
 requirements:
   build:
+    - python                              # [build_platform != target_platform]
+    - pip                                 # [build_platform != target_platform]
+    - setuptools                          # [build_platform != target_platform]
+    - cython <3.0                         # [build_platform != target_platform]
+    - numpy                               # [build_platform != target_platform]
+    - fftw                                # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   host:
     - python
     - pip
-    - cython
+    - setuptools
+    - cython <3.0
     - numpy
     - fftw
-    - setuptools
   run:
     - python
     - mpi4py
     - {{ pin_compatible('numpy') }}
     - fftw
-
-test:
-  source_files:
-    - tests
 
 about:
   home: https://github.com/mpi4py/mpi4py-fft
